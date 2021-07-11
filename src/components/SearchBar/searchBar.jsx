@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function searchBar(props) {
+export default function SearchBar(props) {
     return (
         <div></div>
     )

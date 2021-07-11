@@ -1,7 +1,17 @@
-import React from 'react';
+import React from 'react'
+import './TitleBar.css';
 
-export default function TitleBar(props) {
+function TitleBar() {
     return (
-        <div></div>
+    <>
+        <nav className="navbar backStyle">
+            <div className="container-fluid alignThatText">
+                <span className="navbar-brand mb-0 h1">YouTubeClone Project</span>
+                {/* Search Bar can also go in here if you want*/}
+            </div>
+        </nav>
+    </>
     )
 }
+
+export default TitleBar;
