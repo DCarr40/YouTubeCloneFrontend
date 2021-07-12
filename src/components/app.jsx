@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import TitleBar from './TitleBar/TitleBar';
 import Comments from './Comments/Comments';
+import SearchBar from './SearchBar/SearchBar';
+import RelatedVideos from './RelatedVideos/RelatedVideos';
 
 
 export default class App extends Component {
@@ -32,7 +34,9 @@ export default class App extends Component {
         return(
             <React.Fragment>
                 <TitleBar />
-                <Comments/>           
+                <SearchBar />
+                <Comments/>
+                <RelatedVideos />          
             </React.Fragment>
         )
     }
