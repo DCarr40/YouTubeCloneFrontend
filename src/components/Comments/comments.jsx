@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import "./comments.css";
 
 export default class Comments extends React.Component {
 
@@ -31,12 +32,13 @@ export default class Comments extends React.Component {
             )
         }
         return (
-            <>
-                <div className= "Comments" >Comment: {this.state.commentData[0].text}</div>
+            <div>
+                <div className="second" >Comment: {this.state.commentData[0].text}
+                    <div>Replies: {this.state.commentData[0].reply[0].text}</div>
+                </div>
                 <div className= "Likes" >Likes: {this.state.commentData[0].like}</div>
                 <div className= "Dislikes" >Dislikes: {this.state.commentData[0].dislike}</div>
-                <div className= "Replies" >Replies: {this.state.commentData[0].reply[0].text}</div>
-            </>
+            </div>
         )
-    }
+    } //Add form to add comment, and reply.
 }

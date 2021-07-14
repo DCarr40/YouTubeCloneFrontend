@@ -23,7 +23,7 @@ body {
 
 .second {
     width: 350px;
-    background-color: white;
+    background-color: rgba(42, 253, 0, 0.336);
     border-radius: 4px;
     box-shadow: 10px 10px 5px #aaaaaa
 }
