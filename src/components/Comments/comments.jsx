@@ -25,6 +25,7 @@ export default class Comments extends React.Component {
 
     render() {
         if(this.state.commentData[0] ===  undefined){
+            console.log(this.state.commentData);
             return (
             <div>Loading...</div>
             )

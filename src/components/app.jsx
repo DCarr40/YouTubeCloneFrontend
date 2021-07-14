@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import TitleBar from './TitleBar/TitleBar';
-import Comments from './Comments/Comments';
-import SearchBar from './SearchBar/SearchBar';
-import RelatedVideos from './RelatedVideos/RelatedVideos';
-import VideoPlayer from './VideoPlayer/VideoPlayer';
+import TitleBar from './TitleBar/titleBar';
+import Comments from './Comments/comments';
+import SearchBar from './SearchBar/searchBar';
+import RelatedVideos from './RelatedVideos/relatedVideos';
+import VideoPlayer from './VideoPlayer/videoPlayer';
 
 
 export default class App extends Component {
@@ -13,15 +13,25 @@ export default class App extends Component {
     
     this.state = { 
         videoData: [],
+        filters: "",
     }
 }
-    componentDidMount() {
-        // this.fetchVideos();
-    }
+
+handleChange(event){
+    event.preventDefault();
+    this.setState({filters:event.target.value});
+    console.log(this.state.filters);
+}
+
+    // componentDidMount() {
+    //     this.fetchVideos();
+    // }
 
     // async fetchVideo() {
     //     try {
-    //         let response = await axios.get("https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=star wars&key=AIzaSyANrDPu3iDPgceB80QmFwv8nkzZcp1w4WU");
+    //         let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q={SEARCH QUERY HERE}&key=${API_KEY}`);
+    //         this.setState({ videoData: response.data });
+    //         console.log(this.state.videoData);
     //      } catch (err) {
     //        console.log(err);
     //      }
@@ -32,10 +42,10 @@ export default class App extends Component {
     }
 
     render() {
-        return(
+        return(   
             <React.Fragment>
                 <TitleBar />
-                <SearchBar />
+                <SearchBar handleChange={(event)=>this.handleChange(event)}/>
                 <VideoPlayer/>
                 <Comments/>
                 <RelatedVideos />          
