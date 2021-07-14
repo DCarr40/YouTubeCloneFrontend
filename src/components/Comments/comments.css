@@ -1,6 +1,6 @@
-body {
+/* body {
     background-color: #fff;
-}
+} */
 
 .container {
     background-color: #eef2f5;
@@ -23,7 +23,34 @@ body {
 
 .second {
     width: 350px;
+    margin: 15px;
     background-color: rgba(42, 253, 0, 0.336);
     border-radius: 4px;
     box-shadow: 10px 10px 5px #aaaaaa
 }
+
+.button {
+    background-color: rgba(248, 246, 247, 0.4); 
+    border: none;
+    /* color: white; */
+    padding: 5px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 9px;
+    margin: 14px 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  .button1 {
+    /* background-color: white;  */
+    color: rgb(53, 53, 53); 
+    border: 1px solid rgb(53, 53, 53);
+    border-radius: 100%;
+  }
+  
+  .button1:hover {
+    background-color: rgba(2, 253, 253, 0.4);
+    /* color: rgba(255, 20, 145, 0.6); */
+  }

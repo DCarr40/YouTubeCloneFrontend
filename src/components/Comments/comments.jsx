@@ -35,6 +35,7 @@ export default class Comments extends React.Component {
             <div>
                 <div className="second" >Comment: {this.state.commentData[0].text}
                     <div>Replies: {this.state.commentData[0].reply[0].text}</div>
+                    <button className="button button1">Like {this.state.commentData[0].like}</button>
                 </div>
                 <div className= "Likes" >Likes: {this.state.commentData[0].like}</div>
                 <div className= "Dislikes" >Dislikes: {this.state.commentData[0].dislike}</div>
