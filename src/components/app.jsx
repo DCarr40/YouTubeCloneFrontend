@@ -5,6 +5,7 @@ import Comments from './Comments/comments';
 import SearchBar from './SearchBar/searchBar';
 import RelatedVideos from './RelatedVideos/relatedVideos';
 import VideoPlayer from './VideoPlayer/videoPlayer';
+import {API_KEY} from './config/requests';
 
 
 export default class App extends Component {
@@ -15,37 +16,51 @@ export default class App extends Component {
         videoData: [],
         filters: "",
     }
+
+    this.handleChange= this.handleChange.bind(this);
+    this.handleSubmit= this.handleSubmit.bind(this);
 }
 
-handleChange(event){
-    event.preventDefault();
-    this.setState({filters:event.target.value});
-    console.log(this.state.filters);
-}
-
-    // componentDidMount() {
-    //     this.fetchVideos();
-    // }
-
-    // async fetchVideo() {
-    //     try {
-    //         let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q={SEARCH QUERY HERE}&key=${API_KEY}`);
-    //         this.setState({ videoData: response.data });
-    //         console.log(this.state.videoData);
-    //      } catch (err) {
-    //        console.log(err);
-    //      }
-    // }
-
-    async fetchRelatedVideos() {
-
+    handleChange(event){
+        event.preventDefault();
+        this.setState({filters:event.target.value});
+        console.log(this.state.filters);
     }
+
+
+    handleSubmit(event){
+        console.log(this.state.filters)
+        const searchValue = this.state.filters
+        event.preventDefault();
+    };
+
+
+
+
+
+    componentDidMount() {
+        this.fetchVideos();
+    }
+
+    async fetchVideos() {
+        try {
+            let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${this.state.searchValue}&key=${API_KEY}`);
+            this.setState({ videoData: response.data });
+            console.log(this.state.videoData);
+         } catch (err) {
+           console.log(err);
+         }
+    }
+
+    // async fetchRelatedVideos() {
+
+    // }
 
     render() {
         return(   
             <React.Fragment>
                 <TitleBar />
-                <SearchBar handleChange={(event)=>this.handleChange(event)}/>
+                <SearchBar handleChange={(event)=>this.handleChange(event)}  handleSubmit={(event)=>this.handleSubmit(event)}  searchValue = {this.state.searchValue}/>
                 <VideoPlayer/>
                 <Comments/>
                 <RelatedVideos />          

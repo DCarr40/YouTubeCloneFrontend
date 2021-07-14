@@ -1,22 +1,31 @@
-import { func } from 'prop-types';
 import React from 'react';
-import axios from 'axios';
 import './searchBar.css';
-import {API_KEY} from '../../config/requests';
+
 
 export default function SearchBar(props) {
     return(
         <div>
-            <input type="text" placeholder="Search for videos..." onChange={props.handleChange} />
+            <form>
+                <input type="text" placeholder="Search for videos..." onChange={props.handleChange} />
+                <button type="submit" id="mybutton" onClick={props.handleSubmit} >Submit</button>
+            </form>
         </div>
     )
 
+
+          
+    
+
+
+
+
     // handleSubmit(event){
-    //     const myform = document.getElementById("myform");
-    //     myform.addEventListener("submit",(event) => {
+    //     const mybutton = document.getElementById("mybutton");
+    //     mybutton.addEventListener("submit",(event) => {
     //         event.preventDefault();// prevents whole page from reloading on event change
+    //          
     //         const req = new XMLHttpRequest();//instance of an XMLHttpRequest object
-    //         console.log(myform)
+    //         console.log(mybutton)
     //         req.open("post", "http://localhost:5000/api/songs")// opens the request and use the post method at the URL
     //         req.onload = () => {
     //           console.log(req.responseText);// logs whatever the request spits out to the console
@@ -39,9 +48,9 @@ export default function SearchBar(props) {
     //     }
     // }
 
-    function videoSearch (key, Search, maxResults) {
-        axios.get(`https://www.googleapis.com/youtube/v3/search?q={SEARCH QUERY HERE}&key=${API_KEY}`)
-    }
+    // function videoSearch (key, Search, maxResults) {
+    //     axios.get(`https://www.googleapis.com/youtube/v3/search?q={SEARCH QUERY HERE}&key=${API_KEY}`)
+    // }
 
     // class AddSong extends Component {
     //     constructor(props){
@@ -129,14 +138,14 @@ export default function SearchBar(props) {
     //     }
     // }
 //Jenelle song form look above... hello.
-    return (
-        <div className= "container rightFace alignThatBar">
-            <form id="myform">
-                <div className = "form-group ">
-                    <input type="text" className="form-control " id="search"/>
-                    <input type="submit"  value="search"/>
-                </div>
-            </form>
-        </div>
-    )
+    // return (
+    //     <div className= "container rightFace alignThatBar">
+    //         <form id="myform">
+    //             <div className = "form-group ">
+    //                 <input type="text" className="form-control " id="search"/>
+    //                 <input type="submit"  value="search"/>
+    //             </div>
+    //         </form>
+    //     </div>
+    // )
 }
