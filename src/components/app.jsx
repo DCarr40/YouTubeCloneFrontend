@@ -13,8 +13,9 @@ export default class App extends Component {
         super(props);
     
     this.state = { 
-        videoData: [],
+        videoData: {},
         searchVal:""
+
     }
 
     this.handleChange= this.handleChange.bind(this);
@@ -22,6 +23,7 @@ export default class App extends Component {
 }
 
     handleChange(event){
+        event.preventDefault();
         this.setState({searchVal: event.target.value});
         console.log(this.state.searchVal);
     }
@@ -42,8 +44,8 @@ export default class App extends Component {
         try {
             console.log(this.state.searchVal)
             let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${this.state.searchVal}&key=${API_KEY}`);
-            this.setState({ videoData: response.data });
-            console.log(this.state.videoData);
+            this.setState({ videoData: response.data});
+            console.log("app state.videoData", this.state.videoData);
          } catch (err) {
            console.log(err);
          }
