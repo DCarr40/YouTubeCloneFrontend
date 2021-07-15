@@ -5,9 +5,9 @@ import './searchBar.css';
 export default function SearchBar(props) {
     return(
         <div>
-            <form>
+            <form onSubmit={props.handleSubmit}>
                 <input type="text" placeholder="Search for videos..." onChange={props.handleChange} />
-                <button type="submit" id="mybutton" onClick={props.handleSubmit} >Submit</button>
+                <button type="submit" id="mybutton">Submit</button>
             </form>
         </div>
     )

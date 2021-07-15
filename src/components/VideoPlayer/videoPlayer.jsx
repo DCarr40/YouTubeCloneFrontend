@@ -1,14 +1,11 @@
 import React from 'react'
 import './VideoPlayer.css'
 
-function VideoPlayer() {
+function VideoPlayer(props) {
     return (
         <div>
             <div className="alignThatBox">
-                <iframe src="" frameborder="1" className=""></iframe>
-                <div>
-
-                </div>
+             <iframe src="" frameboarder="0" title="ourvideo"></iframe>
             </div>
         </div>
     )

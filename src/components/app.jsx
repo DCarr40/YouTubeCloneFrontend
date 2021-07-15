@@ -14,7 +14,7 @@ export default class App extends Component {
     
     this.state = { 
         videoData: [],
-        filters: "",
+        searchVal:""
     }
 
     this.handleChange= this.handleChange.bind(this);
@@ -22,20 +22,16 @@ export default class App extends Component {
 }
 
     handleChange(event){
-        event.preventDefault();
-        this.setState({filters:event.target.value});
-        console.log(this.state.filters);
+        this.setState({searchVal: event.target.value});
+        console.log(this.state.searchVal);
     }
 
 
     handleSubmit(event){
-        console.log(this.state.filters)
-        const searchValue = this.state.filters
         event.preventDefault();
+        console.log('handleSubmit triggered!')
+        this.fetchVideos()
     };
-
-
-
 
 
     componentDidMount() {
@@ -44,7 +40,8 @@ export default class App extends Component {
 
     async fetchVideos() {
         try {
-            let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${this.state.searchValue}&key=${API_KEY}`);
+            console.log(this.state.searchVal)
+            let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${this.state.searchVal}&key=${API_KEY}`);
             this.setState({ videoData: response.data });
             console.log(this.state.videoData);
          } catch (err) {
@@ -60,8 +57,8 @@ export default class App extends Component {
         return(   
             <React.Fragment>
                 <TitleBar />
-                <SearchBar handleChange={(event)=>this.handleChange(event)}  handleSubmit={(event)=>this.handleSubmit(event)}  searchValue = {this.state.searchValue}/>
-                <VideoPlayer/>
+                <SearchBar handleChange={(event)=>this.handleChange(event)}  handleSubmit={(event)=>this.handleSubmit(event)}  searchValue = {this.state.searchVal}/>
+                <VideoPlayer videoData= {this.state.videoData}/>
                 <Comments/>
                 <RelatedVideos />          
             </React.Fragment>
