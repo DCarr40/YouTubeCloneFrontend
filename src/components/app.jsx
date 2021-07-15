@@ -58,9 +58,10 @@ export default class App extends Component {
             <React.Fragment>
                 <TitleBar />
                 <SearchBar handleChange={(event)=>this.handleChange(event)}  handleSubmit={(event)=>this.handleSubmit(event)}  searchValue = {this.state.searchVal}/>
+                <RelatedVideos />  
                 <VideoPlayer videoData= {this.state.videoData}/>
                 <Comments/>
-                <RelatedVideos />          
+                        
             </React.Fragment>
         )
     }

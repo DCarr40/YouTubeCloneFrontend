@@ -4,3 +4,10 @@
     float: center;
     text-align: center;
 }
+
+.alignThatTitle {
+    text-align: center;
+    /* text-shadow: 2px 2px; */
+    color: rgb(71, 68, 68);
+
+}
