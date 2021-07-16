@@ -14,7 +14,8 @@ export default class App extends Component {
     
     this.state = { 
         videoData: {},
-        searchVal:""
+        searchVal:"",
+        relatedVideoData: {}
 
     }
 
@@ -41,6 +42,7 @@ export default class App extends Component {
     }
 
     async fetchVideos() {
+
         try {
             console.log(this.state.searchVal)
             let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${this.state.searchVal}&key=${API_KEY}`);
@@ -51,16 +53,32 @@ export default class App extends Component {
          }
     }
 
-    // async fetchRelatedVideos() {
 
-    // }
+    async fetchRelatedVideos() {
+        try {
+            console.log(this.state.searchVal)
+            let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${this.state.videoData.items[0].id.videoId}&type=video&key=${API_KEY}`);
+            this.setState({ relateVideoData: response.data});
+            console.log("app state.relateVideoData", this.state.relatedVideoData);
+         } catch (err) {
+           console.log(err);
+         }
+    }
 
     render() {
+
+        if(this.state.videoData ===  undefined){
+            console.log(this.state.videoData);
+            return (
+            <div>Loading...</div>
+            )
+        }
+
         return(   
             <React.Fragment>
                 <TitleBar />
                 <SearchBar handleChange={(event)=>this.handleChange(event)}  handleSubmit={(event)=>this.handleSubmit(event)}  searchValue = {this.state.searchVal}/>
-                <RelatedVideos />  
+                <RelatedVideos relatedVideoData= {this.state.relatedVideoData} />  
                 <VideoPlayer videoData= {this.state.videoData}/>
                 <Comments/>
                         

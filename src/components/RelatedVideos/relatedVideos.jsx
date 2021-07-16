@@ -2,8 +2,12 @@ import React from 'react';
 import "./relatedVideos.css";
 import VideoCard from "../VideoCard/videoCard";
 
-function relatedVideos() {
+
+export default function relatedVideos(props) {
+ 
+ 
     return (
+        
         <div className="relatedVideos alignThatBar">
             <h2>related</h2>
             <VideoCard 
@@ -15,20 +19,3 @@ function relatedVideos() {
     }
 
 
-// export default function RelatedVideos (){
-
-// return(
-// //     // https://www.googleapis.com/youtube/v3/search?relatedToVideoId={VIDEO ID 
-// //     // HERE}&type=video&key={API KEY HERE}
-    
-
-
-    
-// //     {/* // <div className="list-group list-group-flush border-bottom scrollarea">
-
-// //     //  </div>
-// // ) */}
-
-// // }
-
-export default relatedVideos;
