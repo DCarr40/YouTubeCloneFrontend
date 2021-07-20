@@ -69,15 +69,13 @@ export default class Comments extends React.Component {
                     <input placeholder="Drop a Comment" type="text" onChange={this.handleChange} />
                     <button type="submit">Submit Comment</button>
                 </form>
-                {/* <div className="second" >Comment:// {this.state.commentData.filter((relatedC)=> relatedC.includes(`${this.videoID}`))}
+                <div className="second" >Comment:// {this.state.commentData[0].comment}
                     <form id="insertreply" placeholder="insert a reply" name="" action=""><input type="text" /></form>
                     <div>Replies: {this.state.commentData[0].reply[0].text}</div>
                     <button className="button button1">Like {this.state.commentData[0].like}</button>
-                </div> */}
+                </div>
                 <div className= "Likes" >Likes: {this.state.commentData[0].like}</div>
                 <div className= "Dislikes" >Dislikes: {this.state.commentData[0].dislike}</div>
-
-
             </div>
         )
     } //Add form to add comment, and reply.
