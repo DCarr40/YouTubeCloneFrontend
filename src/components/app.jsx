@@ -6,6 +6,7 @@ import SearchBar from './SearchBar/searchBar';
 import RelatedVideos from './RelatedVideos/relatedVideos';
 import VideoPlayer from './VideoPlayer/videoPlayer';
 import {API_KEY} from './config/requests';
+import './app.css';
 
 
 export default class App extends Component {
@@ -40,11 +41,12 @@ export default class App extends Component {
     componentDidMount() {
         console.log('Component mounted!')
         this.fetchVideos();
-        this.fetchRelatedVideos();
+
     }
 
     componentDidUpdate(){
         console.log('Component updated!')
+        
     }
 
     async fetchVideos() {
@@ -53,17 +55,18 @@ export default class App extends Component {
             console.log('fetchVideos ran!')
             let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${this.state.searchVal}&key=${API_KEY}`);
             this.setState({ videoData: response.data, video: response.data.items[0], videoId: response.data.items[0].id.videoId});
-         
+            this.fetchRelatedVideos();
          } catch (err) {
            console.log(err);
          }
     }
 
-
     async fetchRelatedVideos() {
         try {
-            let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${this.state.searchVal}=video&key=${API_KEY}`);
+            
+            let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${this.state.videoId}&type=video&key=${API_KEY}`);
             this.setState({ relateVideoData: response.data});
+            console.log("Can you see me")
          } catch (err) {
            console.log(err);
          }
@@ -84,7 +87,7 @@ export default class App extends Component {
                 <SearchBar handleChange={(event)=>this.handleChange(event)}  handleSubmit={(event)=>this.handleSubmit(event)}  searchValue = {this.state.searchVal}/>
                 <RelatedVideos relatedVideoData= {this.state.relatedVideoData} />  
                 <VideoPlayer videoData= {this.state.videoData}/>
-                <Comments/>         
+                <Comments videoId= {this.state.videoId} />         
             </React.Fragment>
         )
     }
