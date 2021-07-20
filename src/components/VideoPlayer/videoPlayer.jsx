@@ -2,18 +2,15 @@ import React from 'react'
 import './VideoPlayer.css'
 
 function VideoPlayer(props) {
-    console.log("videoPlayer props.videoData.items", props.videoData.items);
     // console.log("videoPlayer props.videoData.items", props.videoData.items[0]);
 
     if(!props.videoData.items){
-        console.log(props.videoData.items);
         return (
         <div id="showVideo">Loading...</div>
         )
     }
     else{
 
-        console.log("videoPlayer props.videoData.items[0].id.videoId", props.videoData.items[0].id.videoId);
         document.getElementById("showVideo").src="https://www.youtube.com/embed/" + props.videoData.items[0].id.videoId; 
     
     return (

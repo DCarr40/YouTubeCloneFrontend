@@ -15,7 +15,9 @@ export default class App extends Component {
     this.state = { 
         videoData: {},
         searchVal:"",
-        relatedVideoData: {}
+        relatedVideoData: {},
+        video: {},
+        videoId: ''
 
     }
 
@@ -26,29 +28,32 @@ export default class App extends Component {
     handleChange(event){
         event.preventDefault();
         this.setState({searchVal: event.target.value});
-        console.log(this.state.searchVal);
     }
 
 
     handleSubmit(event){
         event.preventDefault();
-        console.log('handleSubmit triggered!')
         this.fetchVideos()
     };
 
 
     componentDidMount() {
+        console.log('Component mounted!')
         this.fetchVideos();
         this.fetchRelatedVideos();
+    }
+
+    componentDidUpdate(){
+        console.log('Component updated!')
     }
 
     async fetchVideos() {
 
         try {
-            console.log(this.state.searchVal)
+            console.log('fetchVideos ran!')
             let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${this.state.searchVal}&key=${API_KEY}`);
-            this.setState({ videoData: response.data});
-            console.log("app state.videoData", this.state.videoData);
+            this.setState({ videoData: response.data, video: response.data.items[0], videoId: response.data.items[0].id.videoId});
+         
          } catch (err) {
            console.log(err);
          }
@@ -57,10 +62,8 @@ export default class App extends Component {
 
     async fetchRelatedVideos() {
         try {
-            console.log(this.state.searchVal)
             let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${this.state.searchVal}=video&key=${API_KEY}`);
             this.setState({ relateVideoData: response.data});
-            console.log("app state.relateVideoData", this.state.relatedVideoData);
          } catch (err) {
            console.log(err);
          }
@@ -69,11 +72,11 @@ export default class App extends Component {
     render() {
 
         if(this.state.videoData ===  undefined){
-            console.log(this.state.videoData);
             return (
             <div>Loading...</div>
             )
         }
+        console.log(this.state)
 
         return(   
             <React.Fragment>

@@ -4,9 +4,7 @@ import VideoCard from "../VideoCard/videoCard"
 
 
 
-export default function relatedVideos(props) {
-    console.log("relatedVideoPlayer props.relatedVideoData", props.relatedVideoData);
- 
+export default function relatedVideos(props) { 
     return (
         <div className="relatedVideos alignThatBar">
             <h2>related</h2>

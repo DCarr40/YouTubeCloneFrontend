@@ -18,7 +18,6 @@ export default class Comments extends React.Component {
         try {
             let response = await axios.get("http://localhost:5000/api/collections");
             this.setState({ commentData: response.data });
-            console.log(this.state.commentData);
          } catch (err) {
            console.log(err);
          }
@@ -26,7 +25,6 @@ export default class Comments extends React.Component {
 
     render() {
         if(this.state.commentData[0] ===  undefined){
-            console.log(this.state.commentData);
             return (
             <div>Loading...</div>
             )
